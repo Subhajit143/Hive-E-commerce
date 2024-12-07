@@ -1,5 +1,7 @@
 import { User } from "../models/user.model.js";
 import { Product } from "../models/product.model.js";
+import { promise } from "zod";
+import {v2 as cloudinary} from "cloudinary"
 
 //To show all the users in the database
 export const getAllUsers = async (req, res) => {
@@ -44,14 +46,14 @@ export const updateUser= async (req, res,next) => {
 export const  getProducts =async(req,res)=>
 {
   try {
-    const prod= await Product.find()
+    const product= await Product.find()
     console.log(prod);
     if(!prod||prod.length ===0){
       console.log("No product found from admin controller");
       
       return res.status(404).send("No products found");
     }
-    return res.status(200).json(prod);
+    return  res.status(200).json({ message: `Get product succesfully` ,product})
     
   } catch (error) {
     console.log("Error from admin getAll product = ", error);
@@ -62,7 +64,7 @@ export const deletedProduct = async (req,res)=>{
   try {
     const id = req.params.id;
     await Product.deleteOne({_id:id});
-    return res.status(200).json({message: "Product deleted successfully",});
+    return res.status(200).json({message: "Product deleted  successfully",});
   } catch (error) {
     console.log("Error from admin deleteProduct",error);
     
@@ -70,42 +72,59 @@ export const deletedProduct = async (req,res)=>{
 }
 
 // Add a new product
-// export const addProduct =async(req,res) => {
-//   try {
-//     const newProduct =  new Product({
-//       name: req.body.name,
-//       description: req.body.description,
-//       price: req.body.price,
-//       imageUrl: req.body.imageUrl,
-//       category: req.body.category,
-//       stock: req.body.stock,
-//     })
-//     await newProduct.save()
-//     res.status(200).send({  message: "Product added successfully",})
-    
-//   } catch (error) {
-//     res.send("ERROR FROM IMG: ",error)
-//   }
- 
-  
-  
-  
-  
-  
-  
-//   // try {
-//   //  const { name, description, price, imageUrl, category, stock } = req.body;
-//   //  const product = new Product({ name, description, price, imageUrl, category, stock });
-//   //  await product.save();
-//   //  res.status(201).send({
-//   //      message: "Product added successfully",
-       
-//   //  });
-//   //  console.log(product);
-   
-//   // } catch (error) {
-//   //  console.log("Error from addProduct controller: " + error);
-   
-//   // }
+export const addProduct = async (req, res) => {
+  try {
+    // Process images first
+    const image1 = req.files?.image1?.[0];
+    const image2 = req.files?.image2?.[0];
+    const image3 = req.files?.image3?.[0];
 
-// }
+    let images = [image1, image2,image3].filter((item) => item !== undefined);
+
+    // Upload images to Cloudinary and get URLs
+    let imagesUrl = await Promise.all(
+      images.map(async (item) => {
+        let result = await cloudinary.uploader.upload(item.path, {
+          resource_type: 'image',
+        });
+        return result.secure_url;
+      })
+    );
+
+    // Now destructure req.body into productData
+    const { name, description, price, category, stock } = req.body;
+
+    // Create product data object
+    const productData = {
+      name,
+      description,
+      price,
+      category,
+      stock,
+      imageUrl: imagesUrl, // Use the processed image URLs
+    };
+
+    // Save to database
+    const product = new Product(productData);
+    await product.save();
+
+    res.status(200).json({ message: `${name} Added to DB Successfully` });
+  } catch (error) {
+    console.error("Error adding product", error);
+    res.status(500).json({ message: "Error adding product", error });
+  }
+};
+
+export const singleProduct= async(req,res)=>{
+  try {
+    const id = req.params.id;
+    const product = await Product.findById({_id:id});
+    res.status(200).json({ message: `Get product succesfully` ,product});
+  } catch (error) {
+    console.error("Error getting Single product", error);
+    res.status(500).json({ message: "Error Geting Single product", error });
+  }
+}
+  
+  
+  

@@ -2,42 +2,52 @@ import React, { useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import CategoryDropdown from "./CategoryDropdown";
 import axios from "axios"
-// import { useAuth } from "../store/auth";
+import { useAuth } from "../store/auth";
 import { toast } from 'react-toastify'
+import { IoMdCloudDownload } from "react-icons/io";
 
 
 
 const AdminProduct = () => {
-  // const {authorizationToken}=useAuth()
+  const {authorizationToken}=useAuth()
   const [formdata, setFormData] = useState({
     name: "",
     description: "",
     price: "",
-    imageUrl: null,
+    image1:"",
+    image2:"",
+    image3:"",
     category: "",
     stock: "",
   });
-  console.log("begin sokyu");
+  
   
   
   const handleCategory = (e) => {
     setFormData({ ...formdata, category: e.target.value });
   };
 
-  const handleInput = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "image") {
-      setFormData({ ...formdata, imageUrl: files[0] });
-    } else setFormData({ ...formdata, [name]: value });
+  const handleInputImage = (e) => {
+    e.preventDefault();
+    const {id,files}=e.target;
+    setFormData({...formdata, [id]: files[0] });
    
   };
+  console.log(formdata);
+  const handleInput = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formdata, [id]: value });
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       !formdata.name ||
       !formdata.description ||
       !formdata.price ||
-      !formdata.imageUrl ||
+      !formdata.image1 ||
+      !formdata.image2 ||
+      !formdata.image3 ||
       !formdata.category ||
       !formdata.stock
     ) {
@@ -50,15 +60,17 @@ const AdminProduct = () => {
     data.append("name", formdata.name)
     data.append("description", formdata.description)
     data.append("price", formdata.price)
-    data.append("image", formdata.imageUrl)
+    data.append("image1", formdata.image1)
+    data.append("image2", formdata.image2)
+    data.append("image3", formdata.image3)
     data.append("category", formdata.category)
     data.append("stock", formdata.stock)
     try {
       const response=await axios.post("http://localhost:5000/api/admin/addProduct",
        data,
         { headers:{
-          // "Authorization": authorizationToken,
-          "Content-type":"multipart/form-data"
+          "Authorization": authorizationToken,
+          // "Content-type":"multipart/form-data"
         },
     })
     toast.success("Product successfully added")
@@ -66,11 +78,13 @@ const AdminProduct = () => {
     //Reset Form After submission
     setFormData({
       name: "",
-      description: "",
-      price: "",
-      imageUrl: null,
-      category: "",
-      stock: "",
+    description: "",
+    price: "",
+    image1:null,
+    image2:null,
+    image3:null,
+    category: "",
+    stock: "",
     });
     console.log("Added Product successfully");
     
@@ -93,6 +107,25 @@ const AdminProduct = () => {
       <div className="w-1/2 mx-auto p-6 bg-white shadow-md rounded-md">
         <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
         <form onSubmit={handleSubmit}>
+          
+              {/* Image/File */}
+              <div className="flex flex-wrap items-center gap-5">
+            {["image1","image2","image3"].map((imageId)=>(
+               <label htmlFor={imageId} key={imageId}>
+                <div className="text-gray-500 border-2 border-dashed border-gray-500 px-4 py-2 hover:border-black duration-300 ease-in-out cursor-pointer rounded-md">
+                {formdata[imageId]? (
+                  <img
+                src={URL.createObjectURL(formdata[imageId])} alt="preview" className="w-20 h-20 object-cover mb-2 rounded-md"/>):(
+                  <IoMdCloudDownload className='text-5xl'/>
+                )}
+                <input type="file" hidden id={imageId} onChange={handleInputImage} />
+                <p>{formdata[imageId] ? "Change":"Upload"}</p>
+                </div>
+               </label>
+            ))}
+          </div>
+
+
           {/* Name */}
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700 mb-2">
@@ -143,23 +176,7 @@ const AdminProduct = () => {
             />
           </div>
 
-          {/* Image/File */}
-          <div className="mb-4">
-            <label htmlFor="image" className="block text-gray-700 mb-2">
-              Image/File
-            </label>
-            <input
-              type="file"
-              id="image"
-              name="image"
-              accept="image/*,application/pdf"
-              onChange={handleInput}
-              value={formdata.image}
-              
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
+      
 
           {/* Category */}
           {/* <div className="mb-4">

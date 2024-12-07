@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import NewArrival from "./NewArrival";
+import Banner from "../components/Banner";
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <main>
+      <Banner />
+      <div className="w-screen  flex justify-center items-center">
+  <NewArrival />
+</div>
 
-export default Home
+
+
+    </main>
+  );
+};
+
+export default Home;

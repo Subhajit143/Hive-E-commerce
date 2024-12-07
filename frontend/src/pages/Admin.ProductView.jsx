@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import { Sidebar } from '../components/Sidebar'
 import { useAuth } from '../store/auth'
 import {toast} from 'react-toastify'
+import axios from 'axios'
 
 
 function AdminProductView() {
@@ -10,16 +11,12 @@ function AdminProductView() {
   
   const getProduct=async()=>{
     try {
-      const response = await fetch("http://localhost:5000/api/admin/getProducts",
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
-      const data=await response.json()
+      const response = await axios.get("http://localhost:5000/api/admin/getProducts");
+      
+      const data= response.data;
+      
       setProducts(data)
+      console.log("ProductView : ", products);
     } catch (error) {
       console.log("error getting product =",error);
       
@@ -38,7 +35,7 @@ function AdminProductView() {
         console.log((`Product After delete ${data}`));
         if(response.ok){
           getProduct();
-           toast.info("User deleted successfully!");
+           toast.info("Product deleted successfully!");
         }
       } catch (error) {
         console.log(error);
@@ -73,7 +70,7 @@ function AdminProductView() {
               <td className="border px-4 py-2">
                 <img
                   // src={product.imageUrl}
-                  src={`../../../server/uploads/${product.imageUrl}`}
+                  src={product.imageUrl[0]}
                   alt={product.title}
                   className="w-16 h-16 object-cover"
                 />
