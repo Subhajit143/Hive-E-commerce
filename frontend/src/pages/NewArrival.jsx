@@ -17,9 +17,14 @@ const NewArrival = () => {
       console.log("API Response: ", response);
   
       const data = response?.data;
-      console.log("Data Fetched: ", data);
-      setProducts(data);
-      console.log("Products successfully fetched: ", data);
+
+
+      // Sort products by createdAt (descending) and take the latest 6
+      const sortedProducts = data.slice(-6)
+
+      // console.log("Data Fetched: ", data);
+      setProducts(sortedProducts);
+      console.log("Products successfully fetched: ", sortedProducts);
       
     } catch (error) {
       console.log("Product Fetching Error - ", error);

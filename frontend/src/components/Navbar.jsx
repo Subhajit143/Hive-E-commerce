@@ -14,7 +14,7 @@ const Navbar = () => {
   const { products } = useSelector((state) => state.hive);
 
   return (
-    <div className="sticky top-0 bg-white/80 backdrop-blur-md z-50 shadow-md">
+    <div className="sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-md">
       <Container className="flex justify-between text-gray-700 px-7 items-center lg:gap-7">
         {/* Navigation Links */}
         <div className="bg-white/70 backdrop-blur-md">
@@ -22,22 +22,22 @@ const Navbar = () => {
     <ul className="flex gap-12 text-sm font-semibold">
       <li>
         <NavLink className="hover:text-yellow-400 duration-700" to="/">
-          Home
+          Shpo
         </NavLink>
       </li>
       <li>
         <NavLink className="hover:text-yellow-400 duration-700" to="/men">
-          Men
+          Shop
         </NavLink>
       </li>
       <li>
         <NavLink className="hover:text-yellow-400 duration-700" to="/women">
-          Women
+          Pages
         </NavLink>
       </li>
       <li>
         <NavLink className="hover:text-yellow-400 duration-700" to="/kids">
-          Kids
+          Elements
         </NavLink>
       </li>
     </ul>

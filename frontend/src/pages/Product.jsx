@@ -19,7 +19,7 @@ const Product = ({ item }) => {
       />
     </Link>
   </div>
-  <div className="relative max-w-80 h-56 py-4 flex flex-col gap-1  px-5 rounded-b-md">
+  <div className="relative max-w-80 h-56 py-4 flex flex-col gap-1  px-5 rounded-b-md ">
     <p className=" text-sm font-semibold">{item?.name}</p>
    
     <div className="absolute inset-x-0 bottom-0   p-5">

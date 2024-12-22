@@ -1,7 +1,7 @@
 import express from 'express';
 import {  getProducts } from '../controller/product.controller.js';
 // import { addProduct } from '../controller/admin.controller.js';
-import { addProduct, deletedProduct, deleteUser, getAllUsers, singleProduct, updateUser } from '../controller/admin.controller.js';
+import { addProduct, deletedProduct, deleteUser, getAllUsers, singleProduct, updateProduct, updateUser } from '../controller/admin.controller.js';
 import { authMiddleware } from '../middleware/auth.middleware.js';
 import { adminMiddleware } from '../middleware/admin.middleware.js';
 import multer from "multer"
@@ -24,4 +24,5 @@ AdminRouter.route('/addProduct').post(upload.fields([
 AdminRouter.route("/getProducts").get(getProducts); //authMiddleware,adminMiddleware,
 AdminRouter.route("/deleteProduct/:id").delete(authMiddleware,adminMiddleware,deletedProduct);
 AdminRouter.route("/singleProduct/:id").get(singleProduct)
+AdminRouter.route('/updateProduct/:id').patch(updateProduct)
 export {AdminRouter}

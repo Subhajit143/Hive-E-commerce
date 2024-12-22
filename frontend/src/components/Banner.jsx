@@ -3,8 +3,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Banner1 from "../images/banner1.png";
-import Banner2 from "../images/image.png";
-import Banner3 from "../images/banner2.png";
+import Banner2 from "../images/banner2.png";
+import Banner3 from "../images/banner3.png";
 import Container from "./Container";
 
 const bannerData = [
@@ -26,19 +26,19 @@ const Banner = () => {
   };
 
   return (
-    <Container className="w-screen  ">
+    <div className="max-w-screen-2xl mx-auto px-4   ">
       <Slider {...settings}>
         {bannerData.map((item, index) => (
           <div key={index}>
             <img
               src={item.image}
               alt="bannerImage"
-              className="h-full lg:h-[600px] w-screen object-cover"
+              className="h-full lg:h-[650px] w-screen object-cover"
             />
           </div>
         ))}
       </Slider>
-    </Container>
+    </div>
   );
 };
 

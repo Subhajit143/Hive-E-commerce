@@ -41,7 +41,7 @@ const AddToCart = ({item ,className,AddToCartStyle}) => {
             <HiOutlinePlus className='text-sm' /></button>
           </div>
         ):(
-          <button onClick={handleAddToCart} className={twMerge('w-full text-white/90 bg-gray-700 text-sm font-medium py-2 rounded-md mt-2 hover:text-white hover:bg-black cursor-pointer duration-700 p-2 ',AddToCartStyle)}>
+          <button onClick={handleAddToCart} className={twMerge('w-full text-white/90 uppercase bg-slate-500  text-sm font-medium py-2 rounded-md mt-2 hover:text-white hover:bg-black cursor-pointer duration-700 p-2 ',AddToCartStyle)}>
         Add To Cart
     </button>
         )

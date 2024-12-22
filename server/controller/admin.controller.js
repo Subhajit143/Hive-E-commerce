@@ -125,6 +125,22 @@ export const singleProduct= async(req,res)=>{
     res.status(500).json({ message: "Error Geting Single product", error });
   }
 }
+
+export const updateProduct= async (req,res)=>{
+  
+  try {
+    const id= req.params.id;
+    const updateProductData = req.body;
+    const updatedProduct = await User.updateOne({_id:id},{
+      $set: updateProductData,
+    })
+    return res.status(200).json(updatedProduct)
+  } catch (error) {
+    next(error);
+  }
+
+
+}
   
   
   
