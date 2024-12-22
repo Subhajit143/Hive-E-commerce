@@ -4,6 +4,15 @@
 
 .active {
     
-    color: rgb(235, 206, 43);
+    color: rgb(0, 0, 0);
 }
 
+/* Global styling */
+body {
+    @apply font-zen uppercase; /* Apply the custom font and uppercase text globally */
+  }
+
+  nav{
+    position: sticky; top: 0;
+    backdrop-filter: blur(45px);
+  }

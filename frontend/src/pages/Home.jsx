@@ -1,14 +1,16 @@
 import React from "react";
 import NewArrival from "./NewArrival";
 import Banner from "../components/Banner";
+import Container from "../components/Container";
 
 const Home = () => {
   return (
     <main>
       <Banner />
-      <div className="w-screen  flex justify-center items-center">
+      <Container className="w-screen  flex  justify-center items-center px-10">
+      
   <NewArrival />
-</div>
+</Container>
 
 
 

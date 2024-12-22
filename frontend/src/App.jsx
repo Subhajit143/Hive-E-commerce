@@ -15,11 +15,18 @@ import AdminProduct from "./pages/Admin.product";
 import AdminProductView from "./pages/Admin.ProductView";
 import SingleProduct from "./pages/SingleProduct";
 import { ThemeProvider } from "../Context API/DarkLight";
+import { persistor, store } from "./Redux/store";
+import { Provider } from "react-redux";
+import CartPage from "./pages/CartPage";
+import { PersistGate } from "redux-persist/integration/react";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
       <ThemeProvider>
+        <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}> 
         <BrowserRouter>
           <Navbar />
           <Routes>
@@ -36,8 +43,13 @@ function App() {
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/addproducts" element={<AdminProduct />} />
             <Route path="/admin/viewproducts" element={<AdminProductView />} />
+            <Route path="/Cart" element={<CartPage />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
+        </PersistGate>
+        </Provider>
+       
       </ThemeProvider>
     </>
   );

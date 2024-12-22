@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import Banner1 from "../images/banner1.png";
 import Banner2 from "../images/image.png";
 import Banner3 from "../images/banner2.png";
+import Container from "./Container";
 
 const bannerData = [
   { title: "Keliyan ", image: Banner1 },
@@ -25,7 +26,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="w-screen  ">
+    <Container className="w-screen  ">
       <Slider {...settings}>
         {bannerData.map((item, index) => (
           <div key={index}>
@@ -37,7 +38,7 @@ const Banner = () => {
           </div>
         ))}
       </Slider>
-    </div>
+    </Container>
   );
 };
 
