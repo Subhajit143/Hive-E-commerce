@@ -26,7 +26,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4   ">
+    <div className="max-w-screen-2xl mx-auto px-4 py-8  ">
       <Slider {...settings}>
         {bannerData.map((item, index) => (
           <div key={index}>

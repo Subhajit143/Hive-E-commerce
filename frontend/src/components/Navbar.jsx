@@ -22,21 +22,21 @@ const Navbar = () => {
     <ul className="flex gap-12 text-sm font-semibold">
       <li>
         <NavLink className="hover:text-yellow-400 duration-700" to="/">
-          Shpo
+          Home
         </NavLink>
       </li>
       <li>
-        <NavLink className="hover:text-yellow-400 duration-700" to="/men">
+        <NavLink className="hover:text-yellow-400 duration-700" to="/shop">
           Shop
         </NavLink>
       </li>
       <li>
-        <NavLink className="hover:text-yellow-400 duration-700" to="/women">
+        <NavLink className="hover:text-yellow-400 duration-700" to="/pages">
           Pages
         </NavLink>
       </li>
       <li>
-        <NavLink className="hover:text-yellow-400 duration-700" to="/kids">
+        <NavLink className="hover:text-yellow-400 duration-700" to="/element">
           Elements
         </NavLink>
       </li>

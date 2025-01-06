@@ -9,6 +9,17 @@ export default {
       fontFamily: {
         zen: ['Zen Kaku Gothic Antique', 'sans-serif'], // Add your font here
       },
+      transitionProperty: {
+        'stroke-dashoffset': 'stroke-dashoffset',
+      },
+      strokeDasharray: {
+        '100%': '100%',
+        '400%': '400%',
+      },
+      strokeDashoffset: {
+        '100%': '100%',
+        '400%': '400%',
+      },
     },
   },
   plugins: [],
