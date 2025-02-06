@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import AddToCart from "../pages/AddToCart";
 const initialState={
-    products:[],
+    products: [],
     userInfo :null,
 
 }
@@ -12,6 +12,7 @@ export const hiveSlice = createSlice({
     reducers:{
         addToCart:(state,action)=>{       
            state.products.push({...action.payload,quantity:1});
+           console.log("Updated Products:", state.products);
         },
         increaseQuantity:(state,action)=>{
             const existingProduct = state.products.find(

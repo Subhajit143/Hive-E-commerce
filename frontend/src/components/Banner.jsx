@@ -2,7 +2,8 @@ import React from "react";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Banner1 from "../images/banner1.png";
+// import Banner1 from "../images/banner1.png";
+import Banner1 from "../images/bannerrandome.webp";
 import Banner2 from "../images/banner2.png";
 import Banner3 from "../images/banner3.png";
 import Container from "./Container";
@@ -15,7 +16,7 @@ const bannerData = [
 
 const Banner = () => {
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     speed: 500,         // Adjust for transition speed
     autoplay: true,
@@ -26,14 +27,28 @@ const Banner = () => {
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 py-8  ">
+    // <div className="max-w-screen-2xl mx-auto px-4 py-8  ">
+    //   <Slider {...settings}>
+    //     {bannerData.map((item, index) => (
+    //       <div key={index}>
+    //         <img
+    //           src={item.image}
+    //           alt="bannerImage"
+    //           className="h-full lg:h-[650px] w-screen object-cover"
+    //         />
+    //       </div>
+    //     ))}
+    //   </Slider>
+    // </div>
+
+    <div className="w-screen   ">
       <Slider {...settings}>
         {bannerData.map((item, index) => (
           <div key={index}>
             <img
               src={item.image}
               alt="bannerImage"
-              className="h-full lg:h-[650px] w-screen object-cover"
+              className="h-screen  w-full "  //lg:h-[650px]
             />
           </div>
         ))}

@@ -43,7 +43,7 @@ const NewArrival = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PreviousArrow />,

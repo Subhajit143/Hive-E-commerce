@@ -2,6 +2,7 @@ import { User } from "../models/user.model.js";
 import { Product } from "../models/product.model.js";
 import { promise } from "zod";
 import {v2 as cloudinary} from "cloudinary"
+// import { db } from "../db/mySql.js";
 
 //To show all the users in the database
 export const getAllUsers = async (req, res) => {
@@ -43,22 +44,22 @@ export const updateUser= async (req, res,next) => {
   }
 }
 
-export const  getProducts =async(req,res)=>
-{
-  try {
-    const product= await Product.find()
-    console.log(prod);
-    if(!prod||prod.length ===0){
-      console.log("No product found from admin controller");
+// export const  getProducts =async(req,res)=>
+// {
+//   try {
+//     const product= await Product.find()
+//     console.log(prod);
+//     if(!prod||prod.length ===0){
+//       console.log("No product found from admin controller");
       
-      return res.status(404).send("No products found");
-    }
-    return  res.status(200).json({ message: `Get product succesfully` ,product})
+//       return res.status(404).send("No products found");
+//     }
+//     return  res.status(200).json({ message: `Get product succesfully` ,product})
     
-  } catch (error) {
-    console.log("Error from admin getAll product = ", error);
-  }
-}
+//   } catch (error) {
+//     console.log("Error from admin getAll product = ", error);
+//   }
+// }
 
 export const deletedProduct = async (req,res)=>{
   try {
@@ -71,7 +72,7 @@ export const deletedProduct = async (req,res)=>{
   }
 }
 
-// Add a new product
+// **************Add a new product Using MongoDb DatBase**************
 export const addProduct = async (req, res) => {
   try {
     // Process images first
@@ -115,16 +116,84 @@ export const addProduct = async (req, res) => {
   }
 };
 
+//************** In My Sql Server **************
+// export const addProduct = async (req, res) => {
+//   try {
+//     const { name, description, price, category, stock } = req.body;
+
+//     // Process images
+//     const image1 = req.files?.image1?.[0];
+//     const image2 = req.files?.image2?.[0];
+//     const image3 = req.files?.image3?.[0];
+//     let images = [image1, image2, image3].filter((item) => item !== undefined);
+
+//     let imagesUrl = await Promise.all(
+//       images.map(async (item) => {
+//         let result = await cloudinary.uploader.upload(item.path, {
+//           resource_type: 'image',
+//         });
+//         return result.secure_url;
+//       })
+//     );
+
+//     const productData = {
+//       name,
+//       description,
+//       price,
+//       category,
+//       stock,
+//       imageUrl: imagesUrl,
+//     };
+
+//     await Product(productData);
+
+//     res.status(200).json({ message: `${name} Added to DB Successfully` });
+//   } catch (error) {
+//     console.error("Error adding product", error);
+//     res.status(500).json({ message: "Error adding product", error });
+//   }
+// };
+
+
+
+
+
+//********** Using mongoDb *********** */
+
+
 export const singleProduct= async(req,res)=>{
   try {
     const id = req.params.id;
-    const product = await Product.findById({_id:id});
+    const product = await Product.findById({_id:id}); //update _id
     res.status(200).json({ message: `Get product succesfully` ,product});
   } catch (error) {
     console.error("Error getting Single product", error);
     res.status(500).json({ message: "Error Geting Single product", error });
   }
 }
+
+
+
+ //********** Using MySql *********** */
+
+// export const singleProduct = async (req, res) => {
+//   try {
+//     const id = req.params.id; // Extract product ID from request parameters
+
+//     // Query the database to fetch the product by ID
+//     const [rows] = await  db.promise().query("SELECT * FROM products WHERE id = ?", [id]);
+
+//     if (rows.length === 0) {
+//       return res.status(404).json({ message: "Product not found" });
+//     }
+
+//     res.status(200).json({ message: "Get product successfully", product: rows[0] });
+//   } catch (error) {
+//     console.error("Error getting Single product", error);
+//     res.status(500).json({ message: "Error getting single product", error });
+//   }
+// };
+
 
 export const updateProduct= async (req,res)=>{
   
@@ -144,3 +213,7 @@ export const updateProduct= async (req,res)=>{
   
   
   
+
+
+
+//Javascript Language

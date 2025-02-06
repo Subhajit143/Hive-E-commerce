@@ -121,13 +121,13 @@ const Shop = () => {
           {Array.isArray(filterProducts) && filterProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 text-gray-500 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {filterProducts.map((item) => (
-                <Product key={item?._id} item={item} />
+                <Product key={item?.id} item={item} />
               ))}
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 text-gray-500 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {product.map((item) => (
-                <Product key={item?._id} item={item} />
+                <Product key={item?.id} item={item} />
               ))}
             </div>
           )}

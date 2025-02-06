@@ -80,11 +80,11 @@ const CategoryHome = () => {
       </div>
 
       {/* Display filtered products */}
-      <div className="w-full py-10">
+      <div className="w-full py-10 ">
   {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
-    <div className="grid grid-cols-1 sm:grid-cols-2 text-gray-500 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className=" grid grid-cols-1 sm:grid-cols-2  text-gray-500 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {filteredProducts.map((item) => (
-        <Product key={item?._id} item={item} />
+        <Product key={item?.id} item={item}  />
       ))}
     </div>
   ) : (

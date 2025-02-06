@@ -8,7 +8,7 @@ const PriceContainer = ({item,priceStyle}) => {
   const [cartProduct,setCartProduct]=useState(null)
 
   useEffect(()=>{
-    const existingProduct= products.find((product)=>product._id === item._id)
+    const existingProduct= products?.find((product)=>product.id === item.id)
     setCartProduct(existingProduct);
     
   },[item,products])

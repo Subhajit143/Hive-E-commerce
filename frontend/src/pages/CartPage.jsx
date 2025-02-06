@@ -10,7 +10,7 @@ import { useState } from 'react'
 import Container from '../components/Container'
 
 const CartPage = () => {
-    const {products}=useSelector((state)=>state.hive)
+    const {products}=useSelector((state)=>state.hive.cart)
     const dispatch=useDispatch();
     const[subTotalAmt,setSubTotalAmt]=useState("")
     const[discount,setDiscount]=useState("")
