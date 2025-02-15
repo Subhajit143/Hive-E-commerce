@@ -15,7 +15,8 @@ const AddToCart = ({item ,className,AddToCartStyle}) => {
   
   useEffect(()=>{
     const existingProduct= products?.find((product)=>product._id === item._id)
-    setCartProduct(existingProduct);
+    setCartProduct(existingProduct  );
+    
     
   },[item,products])
 

@@ -43,7 +43,7 @@ const NewArrival = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PreviousArrow />,
@@ -77,15 +77,13 @@ const NewArrival = () => {
   };
 
   return (
-    <div className="w-full py-10">
-      
-        <h1>New Arrival</h1>
-        <Slider {...settings}>
-          {products?.map((item) => (
-            <Product key={item?._id} item={item} />
-          ))}
-        </Slider>
-      
+    <div className="w-full py-10 ">
+      <h1 className='font-semibold text-xl'>New Arrival</h1>
+      <Slider {...settings}>
+        {products?.map((item) => (
+          <Product key={item?._id} item={item} />
+        ))}
+      </Slider>
     </div>
   );
 };

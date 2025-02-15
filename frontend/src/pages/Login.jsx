@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { useAuth } from '../store/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { LuEye } from "react-icons/lu";
+import { LuEyeClosed } from "react-icons/lu";
 
 const Login = () => {
+    const [pass,setPass]=useState(true)
     const [iser, setIser] = useState({
         email: '',
         password: '',
@@ -14,6 +17,9 @@ const Login = () => {
         let name=e.target.name
         let value=e.target.value
         setIser({...iser,[name]:value})
+    }
+    const handleIcon = ()=>{
+        setPass(!pass)
     }
 
     const handleSubmit=async(e)=>{
@@ -62,9 +68,18 @@ const Login = () => {
                         <input value={iser.email} onChange={handleloginInput} type="email" name="email" placeholder="Enter your Email" required  autoComplete="off" className='w-full shadow-xl border border-slate-300 rounded-lg px-3 py-1' />
                     </div>
 
-                    <div className='text-xl py-5'>
-                    <label>Password</label>
-                        <input value={iser.password} onChange={handleloginInput} type="password" name="password" placeholder="Enter your Password" required  autoComplete="off" className='w-full shadow-xl border border-slate-300 rounded-lg px-3 py-1' />
+                    <div className='text-xl py-5 '>
+                   
+                   <label>Password</label>
+                   <div className='flex'>
+                   <input value={iser.password} onChange={handleloginInput} type={pass? "password" : "text"} name="password" placeholder="Enter your Password" required  autoComplete="off" className='w-full shadow-xl border border-slate-300 rounded-lg px-3 py-1' />
+                   
+                        <div className='-ml-10 mt-2 cursor-pointer '>
+                        {
+                            !pass? <LuEye onClick={handleIcon}/> : <LuEyeClosed onClick={handleIcon} />
+                        }
+                        </div>
+                        </div>
                     </div>
 
                     <div className='text-center text-xl py-5'>

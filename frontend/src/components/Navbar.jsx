@@ -9,6 +9,7 @@ import { BsCartCheckFill } from "react-icons/bs";
 import { RiMenu4Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import Container from "./Container.jsx";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const Navbar = () => {
   const { isLoggedIn, isAdmin } = useAuth();
@@ -25,7 +26,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`sticky top-0 backdrop-blur-md z-50  shadow-md hover:bg-white duration-300`}
+      className={`sticky top-0 backdrop-blur-md z-50  shadow-md hover:bg-white duration-900`}
       onMouseEnter={handleToggleOpen}
       onMouseLeave={handleToggleClose}
     >
@@ -82,9 +83,10 @@ const Navbar = () => {
                     {isAdmin && (
                       <li>
                         <NavLink to="/admin">
-                          <button className="bg-blue-600 text-white py-2 px-5 rounded-lg">
+                          {/* <button className=" text-black py-2 px-5 rounded-lg">
                             Admin
-                          </button>
+                          </button> */}
+                          <MdAdminPanelSettings className="h-8 w-8"/>
                         </NavLink>
                       </li>
                     )}

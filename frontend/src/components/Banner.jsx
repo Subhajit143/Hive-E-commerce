@@ -2,54 +2,50 @@ import React from "react";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-// import Banner1 from "../images/banner1.png";
-import Banner1 from "../images/bannerrandome.webp";
-import Banner2 from "../images/banner2.png";
-import Banner3 from "../images/banner3.png";
-import Container from "./Container";
+import { Link } from "react-router-dom"; // Import Link if navigating to a shop page
+
+import Banner1 from "../images/b1image.png";
+import Banner2 from "../images/image.png";
+import Banner3 from "../images/image212.png";
 
 const bannerData = [
-  { title: "Keliyan ", image: Banner1 },
-  { title: "Greatest ", image: Banner2 },
-  { title: "Hot ", image: Banner3 },
+  { title: "Keliyan Vintage", image: Banner1 },
+  { title: "Live like a queen ", image: Banner2 },
+  { title: "Hotest Winter", image: Banner3 },
 ];
 
 const Banner = () => {
   const settings = {
-    // dots: true,
     infinite: true,
-    speed: 500,         // Adjust for transition speed
+    speed: 500,
     autoplay: true,
-    autoplaySpeed: 2000, // Change delay for autoplay
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true, 
   };
 
   return (
-    // <div className="max-w-screen-2xl mx-auto px-4 py-8  ">
-    //   <Slider {...settings}>
-    //     {bannerData.map((item, index) => (
-    //       <div key={index}>
-    //         <img
-    //           src={item.image}
-    //           alt="bannerImage"
-    //           className="h-full lg:h-[650px] w-screen object-cover"
-    //         />
-    //       </div>
-    //     ))}
-    //   </Slider>
-    // </div>
-
-    <div className="w-screen   ">
+    <div className="w-screen relative">
       <Slider {...settings}>
         {bannerData.map((item, index) => (
-          <div key={index}>
+          <div key={index} className="relative">
             <img
               src={item.image}
               alt="bannerImage"
-              className="h-screen  w-full "  //lg:h-[650px]
+              className="h-screen w-full object-cover"
             />
+            
+            {/* Overlay content (Title & Shop Now button) */}
+            <div className="absolute bottom-32 right-20 flex flex-col justify-center items-center  text-white text-right">
+              <h2 className="text-4xl font-bold  px-4 py-2 ">{item.title}</h2>
+              <Link
+                to="/shop" // Adjust the path based on your shop page route
+                className="mt-4 inline-block px-6 py-3  text-white text-lg font-semibold border border-white ransition duration-300"
+              >
+                Shop Now
+              </Link>
+            </div>
           </div>
         ))}
       </Slider>

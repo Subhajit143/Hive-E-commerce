@@ -7,26 +7,24 @@ import axios from "axios";
 const CategoryHome = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("all"); // Default category is "all"
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  // Fetch data from API
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/admin/getProducts");
       const data = response?.data;
       setProducts(data);
-      setFilteredProducts(data); // Initially show all products
+      setFilteredProducts(data);
     } catch (error) {
       console.log("Product Fetching Error - ", error);
     }
   };
 
-  // Handle category selection
   const handleCategory = (category) => {
     setSelectedCategory(category);
 
     if (category === "all") {
-      setFilteredProducts(products); // Show all products
+      setFilteredProducts(products);
     } else {
       const filtered = products.filter((product) => product.category === category);
       setFilteredProducts(filtered);
@@ -80,18 +78,17 @@ const CategoryHome = () => {
       </div>
 
       {/* Display filtered products */}
-      <div className="w-full py-10 ">
-  {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
-    <div className=" grid grid-cols-1 sm:grid-cols-2  text-gray-500 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {filteredProducts.map((item) => (
-        <Product key={item?.id} item={item}  />
-      ))}
-    </div>
-  ) : (
-    <p>No products found for the selected category.</p>
-  )}
-</div>
-
+      <div className="w-full py-10">
+        {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-2"> {/* Increased gap here */}
+            {filteredProducts.map((item) => (
+              <Product key={item?.id} item={item} />
+            ))}
+          </div>
+        ) : (
+          <p>No products found for the selected category.</p>
+        )}
+      </div>
     </Container>
   );
 };
