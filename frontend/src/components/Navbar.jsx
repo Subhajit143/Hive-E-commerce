@@ -100,14 +100,14 @@ const Navbar = () => {
                   <>
                     <li>
                       <NavLink to="/login">
-                        <button className="bg-yellow-400 py-2 px-5 rounded-lg">
+                        <button className="uppercase py-2 px-5 text-sm rounded-lg">
                           Login
                         </button>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to="/register">
-                        <button className="bg-yellow-400 py-2 px-3 rounded-lg">
+                        <button className="uppercase py-2 px-3 text-sm rounded-lg">
                           Register
                         </button>
                       </NavLink>
@@ -141,32 +141,33 @@ const Navbar = () => {
 
         <hr className="border-t border-black opacity-20 " />
         {/* Hover Dropdown */}
+        <div className="absolute left-0 right-0 z-10">
         <div
-          className=" absolute bg-white left-0 right-0 z-10 backdrop-blur-md shadow-lg 
+          className="  bg-white  backdrop-blur-md shadow-lg 
     opacity-0 translate-y-0 invisible 
     group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible 
-    transition-opacity   ease-in-out duration-700"
+    transition-opacity   ease-in duration-700"
         >
           <nav className="py-5">
             <ul className="flex justify-center gap-12 text-sm font-semibold">
               <li>
-                <NavLink className="hover:text-black duration-700" to="/">
+                <NavLink className="hover:text-black " to="/">
                   New Arrivals
                 </NavLink>
               </li>
               <li>
-                <NavLink className="hover:text-black duration-700" to="/shop">
+                <NavLink className="hover:text-black" to="/shop">
                   Cult Favorites
                 </NavLink>
               </li>
               <li>
-                <NavLink className="hover:text-black duration-700" to="/pages">
+                <NavLink className="hover:text-black" to="/pages">
                   Clothing
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  className="hover:text-black duration-700"
+                  className="hover:text-black "
                   to="/element"
                 >
                   Pants
@@ -174,7 +175,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  className="hover:text-black duration-700"
+                  className="hover:text-black "
                   to="/element"
                 >
                   Denim
@@ -182,7 +183,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  className="hover:text-yellow-400 duration-700"
+                  className="hover:text-yellow-400 "
                   to="/element"
                 >
                   Tees
@@ -190,7 +191,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  className="hover:text-yellow-400 duration-700"
+                  className="hover:text-yellow-400 "
                   to="/element"
                 >
                   Sweater
@@ -198,6 +199,7 @@ const Navbar = () => {
               </li>
             </ul>
           </nav>
+        </div>
         </div>
       </div>
 

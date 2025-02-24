@@ -1,5 +1,5 @@
 import React from 'react'
-import  logo  from '../assets/logo2.png'
+import  logo  from '../assets/newlogo2-Black.png'
 import Container from './Container'
 import { Link } from 'react-router-dom'
 

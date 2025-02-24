@@ -33,7 +33,7 @@ const Banner = () => {
             <img
               src={item.image}
               alt="bannerImage"
-              className="h-screen w-full object-cover"
+              className="h-screen w-full object-cover "
             />
             
             {/* Overlay content (Title & Shop Now button) */}
@@ -41,7 +41,7 @@ const Banner = () => {
               <h2 className="text-4xl font-bold  px-4 py-2 ">{item.title}</h2>
               <Link
                 to="/shop" // Adjust the path based on your shop page route
-                className="mt-4 inline-block px-6 py-3  text-white text-lg font-semibold border border-white ransition duration-300"
+                className="mt-4 inline-block px-6 py-3  text-white text-lg font-semibold hover:bg-black duration-700 border border-white ransition "
               >
                 Shop Now
               </Link>
